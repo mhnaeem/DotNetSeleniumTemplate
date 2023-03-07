@@ -20,7 +20,7 @@ namespace DotNetSeleniumTemplate.Pages
 
 		public SamplePage enterUserName(string userName)
 		{
-			waitUntilElementIsVisible(driver, usernameFieldSelector)
+			waitUntilElementIsVisible(usernameFieldSelector)
 				.SendKeys(userName);
 			ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Entered Username");
 			return this;
@@ -28,7 +28,7 @@ namespace DotNetSeleniumTemplate.Pages
 
         public SamplePage enterPassword(string password)
         {
-            waitUntilElementIsVisible(driver, passwordFieldSelector)
+            waitUntilElementIsVisible(passwordFieldSelector)
                 .SendKeys(password);
             ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Entered Password");
             return this;
@@ -36,7 +36,7 @@ namespace DotNetSeleniumTemplate.Pages
 
 		public SamplePage clickLoginButton()
 		{
-            waitUntilElementIsVisible(driver, loginButtonSelector)
+            waitUntilElementIsVisible(loginButtonSelector)
                 .Click();
             ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Clicked Login Button");
             return this;
@@ -44,7 +44,7 @@ namespace DotNetSeleniumTemplate.Pages
 
 		public string getErrorText()
 		{
-			return waitUntilElementIsVisible(driver, errorTextSelector)
+			return waitUntilElementIsVisible(errorTextSelector)
 				.Text;
 		}
     }
