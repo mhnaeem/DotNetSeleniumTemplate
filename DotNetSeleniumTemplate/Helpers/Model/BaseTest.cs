@@ -15,20 +15,20 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 		protected IWebDriver driver;
 
 		[OneTimeSetUp]
-		public void OneTimeSetupBeforeTestSuite()
+		protected void OneTimeSetupBeforeTestSuite()
 		{
 			ExtentService.InitializeExtentReport(CurrentDirectory);
 		}
 
 		[OneTimeTearDown]
-		public void OneTimeTearDownAfterTestSuite()
+		protected void OneTimeTearDownAfterTestSuite()
 		{
 			ExtentService.Instance.Flush();
 			Console.WriteLine($"The report has been exported to: {ExtentService.ReportPath}");
         }
 
 		[SetUp]
-		public void BeforeEach()
+		protected virtual void BeforeEach()
 		{
 			driver = new ChromeDriver();
 			driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, 15);
@@ -49,7 +49,7 @@ namespace DotNetSeleniumTemplate.Helpers.Model
         }
 
 		[TearDown]
-		public void AfterEach()
+		protected virtual void AfterEach()
 		{
 			if(TestContext.CurrentContext.Result.Outcome == ResultState.Failure)
 			{
@@ -77,7 +77,7 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 			}
 		}
 
-		public static void GoTo(IWebDriver driver, string url)
+		protected static void GoTo(IWebDriver driver, string url)
 		{
 			driver.Navigate().GoToUrl(url);
 			ExtentTestManager.GetTest().CreateStep($"{MethodBase.GetCurrentMethod()?.Name} {url}");
