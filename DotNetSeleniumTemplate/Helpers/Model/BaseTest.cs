@@ -24,7 +24,8 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 		public void OneTimeTearDownAfterTestSuite()
 		{
 			ExtentService.Instance.Flush();
-		}
+			Console.WriteLine($"The report has been exported to: {ExtentService.ReportPath}");
+        }
 
 		[SetUp]
 		public void BeforeEach()

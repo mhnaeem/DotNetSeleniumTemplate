@@ -9,12 +9,15 @@ namespace DotNetSeleniumTemplate.Helpers.ExtentReport
 	{
         public static ExtentReports Instance { get; } = new();
 
+        public static string ReportPath { get; private set; }
+
         public static void InitializeExtentReport(string currentDirectory)
         {
-            var reportsPath = Path.Combine(currentDirectory, "Reports", GetPrettyTimestamp(DateTime.Now));
-            Directory.CreateDirectory(reportsPath);
+            string reportsDirPath = Path.Combine(currentDirectory, "Reports", GetPrettyTimestamp(DateTime.Now));
+            Directory.CreateDirectory(reportsDirPath);
 
-            var htmlReporter = new ExtentHtmlReporter(Path.Combine(reportsPath, "index.html"));
+            ExtentService.ReportPath = Path.Combine(reportsDirPath, "index.html");
+            var htmlReporter = new ExtentHtmlReporter(ExtentService.ReportPath);
             htmlReporter.Config.Theme = Theme.Standard;
             Instance.AttachReporter(htmlReporter);
             Instance.AddSystemInfo("Environment", ConfigurationRoot.GetApplicationConfiguration().Environment);
