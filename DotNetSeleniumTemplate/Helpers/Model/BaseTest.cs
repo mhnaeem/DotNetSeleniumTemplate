@@ -39,7 +39,7 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 		[TearDown]
 		public void AfterEach()
 		{
-			if(TestContext.CurrentContext.Result.Outcome.Equals(TestStatus.Failed))
+			if(TestContext.CurrentContext.Result.Outcome == ResultState.Failure)
 			{
 				var path = ExtentService.GetScreenshotPath(driver, TestContext.CurrentContext.Test.Name);
 				TestContext.AddTestAttachment(path);
@@ -53,7 +53,7 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 		{
 			string filename = $"{TestContext.CurrentContext.Test.Name}_{DateTime.Now:h_mm_ss}.png";
 
-			if(TestContext.CurrentContext.Result.Outcome.Equals(TestStatus.Passed))
+			if(TestContext.CurrentContext.Result.Outcome == ResultState.Success)
 			{
 				ExtentTestManager.GetTest().Pass("Test Passed");
 			}
