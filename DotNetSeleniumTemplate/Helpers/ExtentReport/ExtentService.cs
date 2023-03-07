@@ -7,10 +7,21 @@ namespace DotNetSeleniumTemplate.Helpers.ExtentReport
 {
 	public class ExtentService
 	{
+
+        /// <summary>
+        /// Current instance of the extent report object
+        /// </summary>
         public static ExtentReports Instance { get; } = new();
 
+        /// <summary>
+        /// File path to the extent report
+        /// </summary>
         public static string ReportPath { get; private set; }
 
+        /// <summary>
+        /// Initializes the ExtentReport with required system info
+        /// </summary>
+        /// <param name="currentDirectory">Directory where the the current application is running in</param>
         public static void InitializeExtentReport(string currentDirectory)
         {
             string reportsDirPath = Path.Combine(currentDirectory, "Reports", GetPrettyTimestamp(DateTime.Now));
@@ -24,6 +35,12 @@ namespace DotNetSeleniumTemplate.Helpers.ExtentReport
             Instance.AddSystemInfo("Username", Environment.UserName);
         }
 
+        /// <summary>
+        /// Captures screenshot from the given <c>IWebDriver</c> instance
+        /// </summary>
+        /// <param name="driver">Driver to take screenshot from</param>
+        /// <param name="screenShotName">Name for the screenshot object</param>
+        /// <returns></returns>
         public static MediaEntityModelProvider CaptureScreenShot(IWebDriver driver, string screenShotName)
         {
             var screenshots = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
@@ -46,6 +63,12 @@ namespace DotNetSeleniumTemplate.Helpers.ExtentReport
             return Path.Combine(folderPath, imageName);
         }
 
+        /// <summary>
+        /// Takes a new screenshot of the given <c>IWebDriver</c> instance and returns a file path to the screenshot
+        /// </summary>
+        /// <param name="driver">Driver to take screenshot from</param>
+        /// <param name="testName">Test name to create directory structures</param>
+        /// <returns></returns>
         public static string GetScreenshotPath(IWebDriver driver, string testName)
         {
             var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
