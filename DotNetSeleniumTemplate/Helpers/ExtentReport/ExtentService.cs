@@ -21,6 +21,7 @@ namespace DotNetSeleniumTemplate.Helpers.ExtentReport
             htmlReporter.Config.Theme = Theme.Standard;
             Instance.AttachReporter(htmlReporter);
             Instance.AddSystemInfo("Environment", ConfigurationRoot.GetApplicationConfiguration().Environment);
+            Instance.AddSystemInfo("Username", Environment.UserName);
         }
 
         public static MediaEntityModelProvider CaptureScreenShot(IWebDriver driver, string screenShotName)
