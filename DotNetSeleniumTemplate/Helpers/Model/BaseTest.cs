@@ -34,7 +34,18 @@ namespace DotNetSeleniumTemplate.Helpers.Model
 			driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, 15);
             driver.Manage().Timeouts().AsynchronousJavaScript = new TimeSpan(0, 0, 15);
             driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, 60);
-			ExtentTestManager.CreateTest(TestContext.CurrentContext.Test.Name);
+
+			string name = TestContext.CurrentContext.Test.Name;
+			string description = "";
+            if (TestContext.CurrentContext.Test.Properties.ContainsKey("Name"))
+            {
+                name = TestContext.CurrentContext.Test.Properties.Get("Name") as string;
+            }
+            if (TestContext.CurrentContext.Test.Properties.ContainsKey("Description"))
+            {
+                description = TestContext.CurrentContext.Test.Properties.Get("Description") as string;
+            }
+            ExtentTestManager.CreateTest(name, description);
         }
 
 		[TearDown]

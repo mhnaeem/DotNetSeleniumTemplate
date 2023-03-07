@@ -9,7 +9,7 @@ namespace DotNetSeleniumTemplate.Tests
 	public class SampleTest : BaseTest
 	{
 
-		[Test]
+		[Test, Name("Failing Test"), Description("Try login with incorrect details")]
 		public void failingTestCase()
 		{
 			GoTo(driver, Configuration.Url);
@@ -20,7 +20,7 @@ namespace DotNetSeleniumTemplate.Tests
 			AssertHelper.ShouldBe(page.getErrorText(), "No Errors");
 		}
 
-		[Test]
+		[Test, Name("Passing Test"), Description("Login successfully with correct details")]
 		public void passingTestCase()
 		{
 			GoTo(driver, Configuration.Url);
