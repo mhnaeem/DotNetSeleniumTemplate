@@ -7,9 +7,10 @@ A simple opinionated project template written in C# using .NET to quickly start 
 1. Zero setup, mostly plug and play
 2. Cross platform support for both Mac OS and Windows
 3. Written with [Selenium 4](https://www.selenium.dev/) and [.NET 7](https://dotnet.microsoft.com/en-us/download)
-4. Integrates [ExtentReports](https://www.extentreports.com/) for custom reporting
-5. Utilises [NUnit](https://nunit.org/) to run tests and integrate with Visual Studio
-6. Provides helper classes and utilities to make writing tests super simple
+4. Uses Selenium Manager to automatically manage web drivers
+5. Integrates [ExtentReports](https://www.extentreports.com/) for custom reporting
+6. Utilises [NUnit](https://nunit.org/) to run tests and integrate with Visual Studio
+7. Provides helper classes and utilities to make writing tests super simple
 
 ## Steps for Setup
 
