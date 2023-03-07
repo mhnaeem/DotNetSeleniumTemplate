@@ -1,11 +1,28 @@
-﻿# DotNetSeleniumTemplate
+# DotNetSeleniumTemplate
 
-This repository contains a simple template that will allow users to quickly start writing tests in Selenium using .NET and C#.
+A simple opinionated project template written in C# using .NET to quickly start writing tests using Selenium.
 
-The project is focused on developement in Visual Studio so loading the .sln file will allow you to quickly setup and run tests from inside Visual Studio.
+## Features
 
-I have also connected ExtentReports to the project so we can have good visual reporting with screenshots.
+1. Zero setup, mostly plug and play
+2. Cross platform support for both Mac OS and Windows
+3. Integrates [ExtentReports](https://www.extentreports.com/) for custom reporting
+4. Utilises [NUnit](https://nunit.org/) to run tests and integrate with Visual Studio
+5. Provides helper classes and utilities to make writing tests super simple
 
-The idea is to have this seamlessly work between Mac and Windows machines.
+## Steps for Setup
 
-Let me know if there are any features/bug fixes you would like to see in this project.
+1. Download [Visual Studio](https://visualstudio.microsoft.com/downloads/) - any version >10.x should work
+2. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) / [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repo to your computer
+3. Open the `DotNetSeleniumTemplate.sln` solution file in Visual Studio
+4. AND that's it!
+
+## Steps to Run Tests
+
+1. Open the `DotNetSeleniumTemplate.sln` solution file in Visual Studio
+2. Open the [Test Explorer](https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer) in Visual Studio
+3. Double click the test name you want to run - [more info](https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer)
+
+## Extra Info
+
+Currently only the `envsettings.json` is copied to the output directory, so modify it to change settings
