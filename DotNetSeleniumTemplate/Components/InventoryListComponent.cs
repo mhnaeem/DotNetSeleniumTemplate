@@ -1,4 +1,6 @@
 ﻿using System;
+using DotNetSeleniumTemplate.Helpers.ExtentReport;
+using System.Reflection;
 using DotNetSeleniumTemplate.Helpers.Model;
 using OpenQA.Selenium;
 
@@ -17,10 +19,11 @@ namespace DotNetSeleniumTemplate.Components
 
 		public InventoryListComponent addItemToCart(int itemNumber)
 		{
-			waitUntilPresenceOfAllElementsLocatedBy(inventoryItemSelector)[itemNumber + 1]
+			waitUntilPresenceOfAllElementsLocatedBy(inventoryItemSelector)[itemNumber - 1]
 				.FindElement(addItemButtonSelector)
 				.Click();
-			return this;
+            ExtentTestManager.GetTest().CreateStep($"Add item number #{itemNumber} to cart");
+            return this;
 		}
 	}
 }

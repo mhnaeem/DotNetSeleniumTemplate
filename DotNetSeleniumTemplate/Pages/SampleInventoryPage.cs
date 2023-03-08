@@ -27,6 +27,10 @@ namespace DotNetSeleniumTemplate.Pages
 			{
 				return 0;
 			}
+			finally
+			{
+                ExtentTestManager.GetTest().CreateStep("Get Cart Item Count");
+            }
 		}
     }
 }
