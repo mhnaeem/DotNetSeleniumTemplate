@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.ObjectModel;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -10,7 +11,7 @@ namespace DotNetSeleniumTemplate.Helpers
 		private static readonly TimeSpan DEFAULT_WAIT_TIME = new TimeSpan(0, 0, 15);
 
 
-        private readonly IWebDriver driver;
+        protected readonly IWebDriver driver;
         public WaitHelper(IWebDriver driver)
         {
             this.driver = driver;
@@ -24,6 +25,18 @@ namespace DotNetSeleniumTemplate.Helpers
         }
 
         private static IWebElement waitUntilWrapper(IWebDriver driver, Func<IWebDriver, IWebElement> condition)
+        {
+            return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
+                .Until(condition);
+        }
+
+        private static ReadOnlyCollection<IWebElement> waitUntilWrapper(IWebDriver driver, Func<IWebDriver, ReadOnlyCollection<IWebElement>> condition, TimeSpan timeSpan)
+        {
+            return new WebDriverWait(driver, timeSpan)
+                .Until(condition);
+        }
+
+        private static ReadOnlyCollection<IWebElement> waitUntilWrapper(IWebDriver driver, Func<IWebDriver, ReadOnlyCollection<IWebElement>> condition)
         {
             return new WebDriverWait(driver, DEFAULT_WAIT_TIME)
                 .Until(condition);
@@ -61,6 +74,50 @@ namespace DotNetSeleniumTemplate.Helpers
         public IWebElement waitUntilElementIsVisible(By bySelector, TimeSpan timeSpan)
         {
             return WaitHelper.waitUntilElementIsVisible(driver, bySelector, timeSpan);
+        }
+        #endregion
+
+        #region VisibilityOfAllElementsLocatedBy
+        public static ReadOnlyCollection<IWebElement> waitUntilVisibilityOfAllElementsLocatedBy(IWebDriver driver, By bySelector)
+        {
+            return WaitHelper.waitUntilWrapper(driver, ExpectedConditions.VisibilityOfAllElementsLocatedBy(bySelector));
+        }
+
+        public static ReadOnlyCollection<IWebElement> waitUntilVisibilityOfAllElementsLocatedBy(IWebDriver driver, By bySelector, TimeSpan timeSpan)
+        {
+            return WaitHelper.waitUntilWrapper(driver, ExpectedConditions.VisibilityOfAllElementsLocatedBy(bySelector), timeSpan);
+        }
+
+        public ReadOnlyCollection<IWebElement> waitUntilVisibilityOfAllElementsLocatedBy(By bySelector)
+        {
+            return WaitHelper.waitUntilVisibilityOfAllElementsLocatedBy(driver, bySelector);
+        }
+
+        public ReadOnlyCollection<IWebElement> waitUntilVisibilityOfAllElementsLocatedBy(By bySelector, TimeSpan timeSpan)
+        {
+            return WaitHelper.waitUntilVisibilityOfAllElementsLocatedBy(driver, bySelector, timeSpan);
+        }
+        #endregion
+
+        #region PresenceOfAllElementsLocatedBy
+        public static ReadOnlyCollection<IWebElement> waitUntilPresenceOfAllElementsLocatedBy(IWebDriver driver, By bySelector)
+        {
+            return WaitHelper.waitUntilWrapper(driver, ExpectedConditions.PresenceOfAllElementsLocatedBy(bySelector));
+        }
+
+        public static ReadOnlyCollection<IWebElement> waitUntilPresenceOfAllElementsLocatedBy(IWebDriver driver, By bySelector, TimeSpan timeSpan)
+        {
+            return WaitHelper.waitUntilWrapper(driver, ExpectedConditions.PresenceOfAllElementsLocatedBy(bySelector), timeSpan);
+        }
+
+        public ReadOnlyCollection<IWebElement> waitUntilPresenceOfAllElementsLocatedBy(By bySelector)
+        {
+            return WaitHelper.waitUntilPresenceOfAllElementsLocatedBy(driver, bySelector);
+        }
+
+        public ReadOnlyCollection<IWebElement> waitUntilPresenceOfAllElementsLocatedBy(By bySelector, TimeSpan timeSpan)
+        {
+            return WaitHelper.waitUntilPresenceOfAllElementsLocatedBy(driver, bySelector, timeSpan);
         }
         #endregion
 

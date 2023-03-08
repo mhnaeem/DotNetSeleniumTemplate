@@ -2,14 +2,10 @@
 
 namespace DotNetSeleniumTemplate.Helpers.Model
 {
-	public abstract class BasePage : WaitHelper
+	public abstract class BasePage : BaseComponent
 	{
-		protected readonly IWebDriver driver;
-
 		public BasePage(IWebDriver driver) : base(driver)
 		{
-			this.driver = driver;
 		}
 	}
 }
-
